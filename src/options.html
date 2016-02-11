@@ -1,0 +1,166 @@
+<html>
+<style>
+table {
+	width: 500px;
+	cell-padding: 3px;
+}
+h1 {
+	margin: 0px;
+}
+#status {
+	font-weight: bold;
+}
+</style>
+<body>
+
+<table>
+<tr>
+<td valign="middle">
+<h1>AWS Request Signer</h1>
+</td>
+<td valign="middle" align="right">
+<img id="icon" src="icon.png">
+</td>
+</tr>
+</table>
+
+<table id="settings">
+<tr>
+<td colspan=2>
+<input type="checkbox" id="enabled" />
+<label for="enabled">Enable request signing</label>
+</td>
+</tr>
+
+<tr>
+<td>
+<label for="region">Region:</label>
+</td>
+<td>
+<select id="region">
+<option value="us-east-1">US East (N. Virginia)</option>
+<option value="us-west-2">US West (Oregon)</option>
+<option value="us-west-1">US West (N. California)</option>
+<option value="eu-west-1">EU (Ireland)</option>
+<option value="eu-central-1">EU (Frankfurt)</option>
+<option value="ap-southeast-1">Asia Pacific (Singapore)</option>
+<option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
+<option value="ap-southeast-2">Asia Pacific (Sydney)</option>
+<option value="ap-northeast-2">Asia Pacific (Seoul)</option>
+<option value="sa-east-1">South America (Sao Paulo)</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>
+<label for="service">Service:</label>
+</td>
+<td>
+<select id="service">
+<option value="apigateway">API Gateway</option>
+<option value="appstream">AppStream</option>
+<option value="acm">Certificate Manager</option>
+<option value="cloudformation">CloudFormation</option>
+<option value="cloudfront">CloudFront</option>
+<option value="cloudsearch">CloudSearch</option>
+<option value="cloudtrail">CloudTrail</option>
+<option value="cloudwatch">CloudWatch</option>
+<option value="codecommit">CodeCommit</option>
+<option value="codedeploy">CodeDeploy</option>
+<option value="codepipeline">CodePipeline</option>
+<option value="cognito-identity">Cognito</option>
+<option value="config">Config</option>
+<option value="datapipeline">Data Pipeline</option>
+<option value="devicefarm">Device Farm</option>
+<option value="directconnect">Direct Connect</option>
+<option value="ds">Directory Service</option>
+<option value="dynamodb">DynamoDB</option>
+<option value="ec2">EC2</option>
+<option value="elasticbeanstalk">Elastic Beanstalk</option>
+<option value="elastictranscoder">Elastic Transcoder</option>
+<option value="elasticache">Elasticache</option>
+<option value="es">Elasticsearch Service</option>
+<option value="elasticmapreduce">EMR</option>
+<option value="gamelift">GameLift</option>
+<option value="glacier">Glacier</option>
+<option value="iam">IAM</option>
+<option value="importexport">Import/Export Snowball</option>
+<option value="kinesis">Kinesis</option>
+<option value="lambda">Lambda</option>
+<option value="machinelearning">Machine Learning</option>
+<option value="mobileanalytics">Mobile Analytics</option>
+<option value="opsworks">OpsWorks</option>
+<option value="rds">RDS</option>
+<option value="redshift">Redshift</option>
+<option value="route53">Route 53</option>
+<option value="s3">S3</option>
+<option value="servicecatalog">Service Catalog</option>
+<option value="ses">SES</option>
+<option value="sns">SNS</option>
+<option value="sqs">SQS</option>
+<option value="storagegateway">Storage Gateway</option>
+<option value="swf">SWF</option>
+<option value="trustedadvisor">Trusted Advisor</option>
+<option value="ec2">VPC</option>
+<option value="waf">WAF</option>
+<option value="workspaces">WorkSpaces</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td colspan=2>
+<input type="radio" name="credentialtype" value="instanceprofile" id="credentialtype_instanceprofile" />
+<label for="credentialtype_instanceprofile">Use instance profile credentials</label>
+</td>
+</tr>
+
+<tr>
+<td colspan=2>
+<input type="radio" name="credentialtype" value="explicit" id="credentialtype_explicit" />
+<label for="credentialtype_explicit">Use explicit credentials</label>
+</td>
+</tr>
+
+<tr>
+<td>
+<label for="accesskeyid">Access Key ID:</label>
+</td>
+<td>
+<input type="text" id="accesskeyid"></input>
+</td>
+</tr>
+
+<tr>
+<td>
+<label for="secretaccesskey">Secret Access Key:</label>
+</td>
+<td>
+<input type="text" id="secretaccesskey"></input>
+</td>
+</tr>
+
+<tr>
+<td>
+<label for="securitytoken">Security Token:</label>
+</td>
+<td>
+<input type="text" id="securitytoken"></input>
+</td>
+</tr>
+
+<tr>
+<td>
+<div id="status"></div>
+</td>
+<td>
+<button id="save">Save</button>
+</td>
+</tr>
+</table>
+
+<script src="options.js"></script>
+
+</body>
+</html>

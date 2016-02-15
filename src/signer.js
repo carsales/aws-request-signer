@@ -60,7 +60,8 @@ chrome.webRequest.onBeforeRequest.addListener(
 	  if (!enabled || !valid())
 		  return;
 
-	  hashedPayloads[details.requestId] = getHashedPayload(details);
+	  var hashedPayload = getHashedPayload(details);
+	  hashedPayloads[details.requestId] = hashedPayload;
 	  log('Hashed Payload: ' + hashedPayload);
 	  
 	  return;

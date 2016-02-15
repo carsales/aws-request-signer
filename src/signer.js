@@ -101,8 +101,13 @@ function valid() {
 }
 
 function getinstanceprofilecredentials() {
+  log('instance profile credential check');
+  
   if (!enabled || !credentialtype_instanceprofile)
 	  return;
+
+  setTimeout(function() {getinstanceprofilecredentials();}, 60000);
+
   if (instanceprofilecredentialscached && instanceprofilecredentialsexpiry > new Date())
 	  return;
   
@@ -134,8 +139,7 @@ function getinstanceprofilecredentials() {
 			xx.send();
 		}
     }
-	
-	window.setTimeout(function() {getinstanceprofilecredentials();}, 60000);
+
   };
   try {
 	x.send();
@@ -315,7 +319,7 @@ function getHashedPayload(request) {
   return CryptoJS.SHA256('');
 }
 function log(msg) {
-  console.log(msg);
+  console.log( msg);
 }
 
 getsettings();

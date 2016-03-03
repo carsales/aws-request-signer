@@ -95,8 +95,6 @@ function valid() {
 	  return false;
   if (!secretaccesskey || secretaccesskey.length === 0)
 	  return false;
-  if (!securitytoken || securitytoken.length === 0)
-	  return false;
   
   return true;
 }

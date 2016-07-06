@@ -109,8 +109,11 @@ function getinstanceprofilecredentials() {
 
   if (instanceprofilecredentialscached && instanceprofilecredentialsexpiry > new Date())
 	  return;
-  
+
+  // http://169.254.169.254 is the instance metadata service, see docs:
+  // http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
   var profileurl = 'http://169.254.169.254/latest/meta-data/iam/security-credentials/';
+  
   var x = new XMLHttpRequest();
   x.open('GET', profileurl);
   x.onerror = function() { log('error calling instance profile service'); };

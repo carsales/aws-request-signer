@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "AWS Request Signer",
   "description": "Signs requests to AWS endpoints (using Signature Version 4 signing process)",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "icons": { "16": "icon-16.png",
              "48": "icon-48.png",
              "128": "icon-128.png" },

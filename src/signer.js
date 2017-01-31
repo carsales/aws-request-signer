@@ -67,7 +67,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 	  return;
   },
   { urls: ["*://*.amazonaws.com/*"],
-	types: ["main_frame","sub_frame","stylesheet","script","image","object","xmlhttprequest","other"]},
+	types: ["main_frame","sub_frame","stylesheet","script","image","font","object","xmlhttprequest","other"]},
   ["blocking","requestBody"]
 );
 
@@ -82,7 +82,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 	  return {requestHeaders: authedHeaders};
   },
   { urls: ["*://*.amazonaws.com/*"],
-	types: ["main_frame","sub_frame","stylesheet","script","image","object","xmlhttprequest","other"]},
+	types: ["main_frame","sub_frame","stylesheet","script","image","font","object","xmlhttprequest","other"]},
   ["blocking","requestHeaders"]
 );
 

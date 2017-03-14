@@ -291,12 +291,13 @@ function getCanonicalHeaders(headers) {
 	if (!headerfound)
 		aggregatedHeaders.push(name + ':' + headers[i].value);
   }
-  var sortedHeaders = aggregatedHeaders.sort(function(a,b) { 
-    var name1 = a.substr(0,a.indexOf(':'));
-	var name2 = b.substr(0,b.indexOf(':'));
-    return name1 > name2;
+  aggregatedHeaders.sort(function(a,b) { 
+        var name1 = a.substr(0,a.indexOf(':'));
+        var name2 = b.substr(0,b.indexOf(':'));
+        var order = (name1 < name2) ? -1 : (name1 > name2) ? 1 : 0;
+        return order;
   });
-  var canonicalHeaders = sortedHeaders.join('\n');
+  var canonicalHeaders = aggregatedHeaders.join('\n');
   return canonicalHeaders + '\n';
 }
 function getSignedHeaders(headers) {

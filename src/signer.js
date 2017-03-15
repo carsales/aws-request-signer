@@ -57,7 +57,7 @@ function updateicon() {
 
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {
-	  if (!enabled || !valid())
+	  if (!enabled || !valid(details))
 		  return;
 
 	  var hashedPayload = getHashedPayload(details);
@@ -73,7 +73,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(details) {
-	  if (!enabled || !valid())
+	  if (!enabled || !valid(details))
 		  return;
  
 	  var authedHeaders = signRequest(details);
@@ -86,7 +86,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   ["blocking","requestHeaders"]
 );
 
-function valid() {
+function valid(details) {
   if (!region || region.length === 0)
 	  return false;
   if (!service || service.length === 0)
@@ -95,6 +95,20 @@ function valid() {
 	  return false;
   if (!secretaccesskey || secretaccesskey.length === 0)
 	  return false;
+
+  // check that requested host matches configured service
+  var host_matches_service = false;
+  var hostname = getHost(details.url);
+  var hostparts = hostname.split('.');
+  for (var i=0; i<hostparts.length; i++) {
+    var part = hostparts[i];
+    if (part == service || (service == 's3' && part.startsWith('s3'))) {
+      host_matches_service = true;
+      break;
+    }
+  }
+  if (!host_matches_service)
+    return false;
   
   return true;
 }

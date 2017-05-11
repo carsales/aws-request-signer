@@ -266,10 +266,8 @@ function getCanonicalUri(url) {
 	  uri = '/';
   else if (uri.substr(0,1) !== '/')
 	  uri = '/' + uri;
-  
-  // aws wants asterisk encoded
-  uri = uri.replace(/\*/g, '%2A');
-  return uri;
+
+  return uriEncode(uri);
 }
 function getCanonicalQueryString(url) {
   var parser = document.createElement('a');
@@ -279,6 +277,7 @@ function getCanonicalQueryString(url) {
   for (var i=0; i<params.length; i++) {
 	  if (params[i].substr(0,1) === '?')
         params[i] = params[i].substr(1, params[i].length-1);
+      params[i] = params[i].split('=').map(decodeURIComponent).map(uriEncodeSlash).join('=');
   }
 
   var sortedParams = params.sort();
@@ -338,5 +337,22 @@ function getHashedPayload(request) {
 function log(msg) {
   console.log( msg);
 }
+function uriEncodeSlash(input) {
+	return uriEncode(input, true)
+}
+function uriEncode(input, slash) {
+  var ch;
+  var i;
+  var output = '';
+  for (i = 0; i < input.length; i++) {
+    ch = input[i];
+    if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9') || ch === '_' || ch === '-' || ch === '~' || ch === '.' || (!slash && ch === '/')) {
+      output += ch;
+    } else {
+      output += `%${ch.charCodeAt(0).toString(16).toUpperCase()}`;
+    }
+  }
+  return output;
+};
 
 getsettings();
